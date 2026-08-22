@@ -1,1 +1,93 @@
 # myPortfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            border-bottom: 2px solid #0366d6;
+            padding-bottom: 10px;
+        }
+        a {
+            color: #0366d6;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .project-card {
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f6f8fa;
+        }
+        .project-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+  <header>
+   </h1> Hellow! welcome , i'am John Ignatius</h1>
+    </header>
+
+    <div class="section">
+        <h2>About Me</h2>
+        <p>I'm a student currently learning Computer Programming at IYF.
+           I'm interested in web development and cyber security.</p>
+    </div>
+
+    <div class="section">
+        <h2>What I'm Learning</h2>
+        <ul>
+            <li>Git and GitHub</li>
+            <li>Web development</li>
+            <li>Node</li>
+            <li>Express</li>
+            <li>MongoDB</li>
+            <li>Vite</li>
+        </ul>
+    </div>
+
+    <!-- NEW PROJECTS SECTION -->
+    <div class="section">
+        <h2>Projects</h2>
+        
+        <div class="project-card">
+            <h3>Creating and Setting up my Github page</h3>
+            <p>This is My page where i do my tasks and everyother task thta i have performed since the beginning of this programming class.</p>
+            <p>
+                <a href="https://github.com/jignatius824@gmail.com" target="_blank">GitHub Repo</a> | 
+        
+            </p>
+        </div>
+
+        <div class="project-card">
+            <h3>Online library</h3>
+            <p>This is a team work where we have worked on creating a site where people can access books and share with us their views.</p>
+            <p>
+                <a href=https://kipchirchirtony35.github.io/iyf-s11-week-12-team-kipchirchirtony35/" target="_blank">GitHub Repo</a> | 
+        
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Links</h2>
+        <ul>
+            <li><a href="https://github.com/jignatius824@gmail.com" target="_blank">My GitHub Profile</a></li>
+        </ul>
+    </div>
+</body>
+</html>
