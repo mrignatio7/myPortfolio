@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Ignatius — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EASY-EDIT ZONE
+     Change these values to re-color / re-brand the whole site.
+     ============================================================ */
+  :root{
+    --bg: #EEF1EC;         /* page background, graph-paper base */
+    --paper: #FBFBF8;      /* card / panel background */
+    --ink: #1E2A25;        /* main text color */
+    --ink-soft: #55645D;   /* secondary text */
+    --accent: #3B6E5E;     /* pencil-green, links & headings */
+    --accent2: #B8492F;    /* brick-red, highlights / tags */
+    --line: #C6D0C7;       /* grid + rule lines */
+    --grid-size: 28px;
+    --radius: 3px;
+    --display: 'Fraunces', serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/var(--grid-size) var(--grid-size),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/var(--grid-size) var(--grid-size),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.55;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  a{ color:var(--accent); }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 24px; }
+
+  /* --- signature element: the dotted "trail" that runs down the page --- */
+  .trail{
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    transform:translateX(-50%);
+    background-image: linear-gradient(var(--ink-soft) 40%, transparent 0%);
+    background-position: center;
+    background-size: 2px 12px;
+    background-repeat: repeat-y;
+    opacity:.35;
+    z-index:0;
+  }
+  .waypoint{
+    position:relative;
+    z-index:1;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+    color:var(--accent);
+    font-family:var(--mono);
+    font-size:13px;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 18px;
+  }
+
+  header.hero{
+    position:relative;
+    padding:96px 24px 64px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.06em;
+    color:var(--accent2);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 4rem);
+    margin:0 0 14px;
+    line-height:1.05;
+  }
+  .tagline{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin:0 auto 30px;
+  }
+  .cta-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono);
+    font-size:14px;
+    padding:11px 22px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn:hover{ transform:translateY(-2px); }
+
+  section{ position:relative; padding:64px 24px; }
+  .section-inner{ max-width:720px; margin:0 auto; position:relative; z-index:1; }
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent2);
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:8px;
+  }
+  h2{
+    font-family:var(--display);
+    font-size:2rem;
+    text-align:center;
+    margin:0 0 34px;
+  }
+
+  .panel{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+    box-shadow:0 1px 0 var(--line);
+  }
+
+  #about p{ color:var(--ink-soft); font-size:1.05rem; }
+
+  .skills{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    list-style:none; padding:0; margin:0;
+  }
+  .skills li{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:7px 14px;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    border-radius:20px;
+  }
+
+  .projects{ display:grid; gap:22px; }
+  .project{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 28px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .project:hover{ transform:translateY(-3px); box-shadow:0 6px 18px rgba(30,42,37,.08); }
+  .project-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .project h3{ font-family:var(--display); font-size:1.3rem; margin:0; }
+  .project .status{ font-family:var(--mono); font-size:12px; color:var(--accent2); }
+  .project p{ color:var(--ink-soft); margin:10px 0 14px; }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .tags span{
+    font-family:var(--mono); font-size:11px;
+    background:var(--bg); border:1px solid var(--line);
+    padding:3px 9px; border-radius:20px; color:var(--ink-soft);
+  }
+  .project a{ font-family:var(--mono); font-size:13px; }
+
+  footer{
+    padding:60px 24px 80px;
+    text-align:center;
+  }
+  footer .btn{ margin-bottom:20px; }
+  footer .links{ display:flex; gap:20px; justify-content:center; font-family:var(--mono); font-size:13px; }
+  footer .fine{ margin-top:34px; color:var(--ink-soft); font-size:12px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">// currently learning to code</div>
+  <h1>Hi, John Ignatius</h1>
+  <p class="tagline">I build small, useful things while I learn web development — one project at a time. This site is my log of that trail.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="#projects">See my projects</a>
+    <a class="btn" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<div style="position:relative;">
+  <div class="trail" aria-hidden="true"></div>
+
+  <section id="about">
+    <div class="section-inner">
+      <div class="waypoint">01</div>
+      <div class="section-label">About</div>
+      <h2>Where I'm starting from</h2>
+      <div class="panel">
+        <p>
+          I'm a  beginner developer at IYF, a few months into learning HTML, CSS, and JavaScript.
+          I like taking on small projects that force me to learn something new — and writing down
+          what I built and why. This page grows every time I finish something.
+        </p>
+        <p>
+          <strong>good task manager</strong> passionate to leaen programming
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-inner">
+      <div class="waypoint">02</div>
+      <div class="section-label">Toolkit</div>
+      <h2>What I'm learning</h2>
+      <ul class="skills">
+        <li>HTML &amp; CSS</li>
+        <li>JavaScript</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-inner">
+      <div class="waypoint">03</div>
+      <div class="section-label">Projects</div>
+      <h2>Things I've built</h2>
+      <div class="projects">
+
+        <div class="project">
+          <div class="project-head">
+            <h3>Weather Check</h3>
+            <span class="status">shipped</span>
+          </div>
+          <p>A small app that shows the current weather for any city, built while learning to work with APIs.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>API</span></div>
+          <a href="#">View code →</a>
+        </div>
+>
+          <p>A to-do list app with local storage, built to practice DOM manipulation and state.</p>
+          <div class="tags"><span>JavaScript</span><span>LocalStorage</span></div>
+          <a href="#">View code →</a>
+        </div>
+        
+          <p>A search tool for recipes by ingredient — my current project, learning fetch and async/await.</p>
+          <div class="tags"><span>JavaScript</span><span>Fetch API</span></div>
+          <a href="#">View code →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-inner">
+      <div class="waypoint">04</div>
+      <div class="section-label">Contact</div>
+      <h2>Let's talk</h2>
+      <div class="panel" style="text-align:center;">
+        <p style="color:var(--ink-soft); margin-top:0;">
+          Open to internships, junior roles, and collaboration on small projects.
+        </p>
+        <a class="btn primary" href="mailto:jignatius824.com">ignatius@824.com</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="links">
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Resume</a>
+  </div>
+  <p class="fine">Built while learning to code · Update this footer with your own links</p>
+</footer>
+
+</body>
+  </html>
